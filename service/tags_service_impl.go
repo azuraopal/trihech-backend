@@ -69,6 +69,6 @@ func (t *TagsServiceImpl) FindById(tagsId int) response.TagsResponse {
 func (t *TagsServiceImpl) Update(tags request.UpdateTagsRequest) {
 	tagData, err := t.TagsRepository.FindById(tags.Id)
 	helper.ErrorPanic(err)
-	tagData.Name = tags.Name 
-	t.TagsRepository.Update(tagData) 
+	tagData.Name = tags.Name
+	t.TagsRepository.Update(tagData)
 }
