@@ -4,8 +4,6 @@ import (
 	"golang-crud-gin/controller"
 
 	"net/http"
-	
-
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
@@ -17,7 +15,7 @@ func NewRouter(tagsController *controller.TagsController) *gin.Engine {
 	router.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	router.GET("", func(ctx *gin.Context) {
-		ctx.JSON(http.StatusOK, "welcome home")
+		ctx.JSON(http.StatusOK, "Auth/Login KUBIKIT")
 	})
 	baseRouter := router.Group("/api")
 	tagsRouter := baseRouter.Group("/tags")
