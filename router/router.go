@@ -15,7 +15,11 @@ func NewRouter(tagsController *controller.TagsController) *gin.Engine {
 	router.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	router.GET("", func(ctx *gin.Context) {
+
 		ctx.JSON(http.StatusOK, "Auth/Login KUBIKIT")
+
+		ctx.JSON(http.StatusOK, "Auth/Login -KUBIKIT")
+
 	})
 	baseRouter := router.Group("/api")
 	tagsRouter := baseRouter.Group("/tags")
