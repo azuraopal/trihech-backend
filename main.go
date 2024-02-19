@@ -10,7 +10,7 @@ import (
 	"golang-crud-gin/router"
 	"golang-crud-gin/service"
 	"net/http"
-																																									
+
 	"github.com/go-playground/validator/v10"
 	"github.com/rs/zerolog/log"
 )
@@ -22,7 +22,8 @@ func main() {
 	db := config.DatabaseConnection()
 	validate := validator.New()
 
-	db.Table("tags").AutoMigrate(&model.Tags{})
+	db.Table("users").AutoMigrate(&model.Users{})
+	db.Table("user_details").AutoMigrate( &model.UserDetails{})
 
 	// Repository
 	tagsRepository := repository.NewTagsREpositoryImpl(db)

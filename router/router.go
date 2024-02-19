@@ -17,7 +17,6 @@ func NewRouter(tagsController *controller.TagsController) *gin.Engine {
 	router.GET("", func(ctx *gin.Context) {
 
 		ctx.JSON(http.StatusOK, "Auth/Login KUBIKIT")
-
 		ctx.JSON(http.StatusOK, "Auth/Login -KUBIKIT")
 
 	})
