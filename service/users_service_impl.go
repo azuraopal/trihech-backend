@@ -15,12 +15,14 @@ type UserServiceImpl struct {
 	Validate        *validator.Validate
 }
 
+
 func NewTagsServiceImpl(userRepository repository.UsersRepository, validate *validator.Validate) *UsersService {
 	return &UsersService{
 		userRepository: userRepository,
 		Validate:       validate,
 	}
 }
+
 
 // Buat implementasi TagsService
 func (t *UserServiceImpl) Create(users request.CreateUsersRequest) {
