@@ -6,9 +6,9 @@ import (
 )
 
 type UsersService interface {
-	Create(tags request.CreateUsersRequest)
-	Update(tags request.UpdateUsersRequest)
-	Delete(tagsId int)
-	FindById(tagsId int) response.UsersResponse
+	Create(users request.CreateUsersRequest)
+	Update(userrs request.UpdateUsersRequest)
+	Delete(usersID int)
+	FindById(usersID int) response.UsersResponse
 	FindAll() []response.UsersResponse
 }

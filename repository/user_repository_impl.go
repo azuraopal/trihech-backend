@@ -5,7 +5,6 @@ import (
 	"golang-crud-gin/data/request"
 	"golang-crud-gin/helper"
 	"golang-crud-gin/model"
-	"os/user"
 
 	"gorm.io/gorm"
 )
@@ -53,8 +52,8 @@ func (t *UsersRepositoryImpl) Save(user model.Users) {
 // Mengupdate implementasi TagsRepository
 func (t *UsersRepositoryImpl) Update(users model.Users) {
 	var updateUser = request.UpdateUsersRequest{
-		ID:   int(ID),
-		Username: Username,
+		ID:   int(users.ID),
+		Username: users.Username,
 	}
 	result := t.Db.Model(&users).Updates(updateUser)
 	helper.ErrorPanic(result.Error)

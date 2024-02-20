@@ -12,10 +12,10 @@ import (
 
 type UserServiceImpl struct {
 	UsersRepository repository.UsersRepository
-	Validate       *validator.Validate
+	Validate        *validator.Validate
 }
 
-func NewTagsServiceImpl(userRepository repository.UsersRepository, validate *validator.Validate) UsersService {
+func NewTagsServiceImpl(userRepository repository.UsersRepository, validate *validator.Validate) *UsersService {
 	return &UsersService{
 		userRepository: userRepository,
 		Validate:       validate,
@@ -43,11 +43,11 @@ func (t *UserServiceImpl) FindAll() []response.UsersResponse {
 
 	var users []response.UsersResponse
 	for _, value := range result {
-		 user:= response.UsersResponse{
-			ID:   value.Id,
-			Username: value.Name,
+		user := response.UsersResponse{
+			ID:       value.ID,
+			Username: value.Username,
 		}
-		users = append(user, users)
+		users = append(users, user)
 	}
 
 	return users
@@ -59,7 +59,7 @@ func (t *UserServiceImpl) FindById(usersId int) response.UsersResponse {
 	helper.ErrorPanic(err)
 
 	tagResponse := response.UsersResponse{
-		ID:   usersData.UserDetails.UserID,
+		ID:       usersData.UserDetails.UserID,
 		Username: usersData.Username,
 	}
 	return tagResponse
