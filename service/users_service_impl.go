@@ -10,38 +10,36 @@ import (
 	"github.com/go-playground/validator/v10"
 )
 
-type UserServiceImpl struct {
-	UsersRepository repository.UsersRepository
+type UsersServiceImpl struct {
+	UserRepository repository.UsersRepository
 	Validate        *validator.Validate
 }
 
-
-func NewTagsServiceImpl(userRepository repository.UsersRepository, validate *validator.Validate) *UsersService {
-	return &UsersService{
-		userRepository: userRepository,
+func NewTagsServiceImpl(userRepository repository.UsersRepository, validate *validator.Validate) repository.UsersService {
+	return &UsersServiceImpl{
+		UserRepository: userRepository,
 		Validate:       validate,
 	}
 }
 
-
 // Buat implementasi TagsService
-func (t *UserServiceImpl) Create(users request.CreateUsersRequest) {
+func (t *UsersServiceImpl) Create(users request.CreateUsersRequest) {
 	err := t.Validate.Struct(users)
 	helper.ErrorPanic(err)
 	usersModel := model.Users{
 		Username: users.Username,
 	}
-	t.UsersRepository.Save(usersModel)
+	t.UserRepository.Save(usersModel)
 }
 
 // Menghapus implementasi tagsService
-func (t *UserServiceImpl) Delete(usersID int) {
-	t.UsersRepository.Delete(usersID)
+func (t *UsersServiceImpl) Delete(usersID int) {
+	t.UserRepository.Delete(usersID)
 }
 
 // Temukan semua implementasi
-func (t *UserServiceImpl) FindAll() []response.UsersResponse {
-	result := t.UsersRepository.FindAll()
+func (t *UsersServiceImpl) FindAll() []response.UsersResponse {
+	result := t.UserRepository.FindAll()
 
 	var users []response.UsersResponse
 	for _, value := range result {
@@ -56,8 +54,8 @@ func (t *UserServiceImpl) FindAll() []response.UsersResponse {
 }
 
 // Temukan berdasarkan id implementasi tagsService
-func (t *UserServiceImpl) FindById(usersId int) response.UsersResponse {
-	usersData, err := t.UsersRepository.FindById(usersId)
+func (t *UsersServiceImpl) FindById(usersId int) response.UsersResponse {
+	usersData, err := t.UserRepository.FindById(usersId)
 	helper.ErrorPanic(err)
 
 	tagResponse := response.UsersResponse{
@@ -68,9 +66,9 @@ func (t *UserServiceImpl) FindById(usersId int) response.UsersResponse {
 }
 
 // Mengupdate implementasi tagsService
-func (t *UserServiceImpl) Update(users request.UpdateUsersRequest) {
-	tagData, err := t.UsersRepository.FindById(users.ID)
+func (t *UsersServiceImpl) Update(users request.UpdateUsersRequest) {
+	tagData, err := t.UserRepository.FindById(users.ID)
 	helper.ErrorPanic(err)
 	tagData.Username = users.Username
-	t.UsersRepository.Update(tagData)
+	t.UserRepository.Update(tagData)
 }

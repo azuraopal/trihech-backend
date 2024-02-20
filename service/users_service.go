@@ -7,7 +7,7 @@ import (
 
 type UsersService interface {
 	Create(users request.CreateUsersRequest)
-	Update(userrs request.UpdateUsersRequest)
+	Update(users request.UpdateUsersRequest)
 	Delete(usersID int)
 	FindById(usersID int) response.UsersResponse
 	FindAll() []response.UsersResponse
