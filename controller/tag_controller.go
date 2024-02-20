@@ -12,23 +12,23 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-type TagsController struct {
-	tagsService service.TagsService
+type UsersController struct {
+	usersService service.UsersService
 }
 
-func NewTagsController(service service.TagsService) *TagsController {
-	return &TagsController{
-		tagsService: service,
+func NewUsersController(service service.UsersService) *UsersController {
+	return &UsersController{
+		usersService: service,
 	}
 }
 
-func (controller *TagsController) Create(ctx *gin.Context) {
-	log.Info().Msg("create tags")
-	createTagsRequest := request.CreateTagsRequest{}
+func (controller *UsersController) Create(ctx *gin.Context) {
+	log.Info().Msg("create users")
+	createTagsRequest := request.CreateUsersRequest{}
 	err := ctx.ShouldBindJSON(&createTagsRequest)
 	helper.ErrorPanic(err)
 
-	controller.tagsService.Create(createTagsRequest)
+	controller.usersService.Create(createTagsRequest)
 	webResponse := response.Response{
 		Code:   http.StatusOK,
 		Status: "Ok",
@@ -39,18 +39,18 @@ func (controller *TagsController) Create(ctx *gin.Context) {
 }
 
 
-func (controller *TagsController) Update(ctx *gin.Context) {
-	log.Info().Msg("update tags")
-	updateTagsRequest := request.UpdateTagsRequest{}
-	err := ctx.ShouldBindJSON(&updateTagsRequest)
+func (controller *UsersController) Update(ctx *gin.Context) {
+	log.Info().Msg("update users")
+	updateUsersRequest := request.UpdateUsersRequest{}
+	err := ctx.ShouldBindJSON(&updateUsersRequest)
 	helper.ErrorPanic(err)
 
-	tagId := ctx.Param("tagId")
-	id, err := strconv.Atoi(tagId)
+	userId := ctx.Param("usersID")
+	id, err := strconv.Atoi(userId)
 	helper.ErrorPanic(err)
-	updateTagsRequest.Id = id
+	updateUsersRequest.ID = id
 
-	controller.tagsService.Update(updateTagsRequest)
+	controller.usersService.Update(updateUsersRequest)
 
 	webResponse := response.Response{
 		Code:   http.StatusOK,
@@ -61,12 +61,12 @@ func (controller *TagsController) Update(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, webResponse)
 }
 
-func (controller *TagsController) Delete(ctx *gin.Context) {
-	log.Info().Msg("delete tags")
+func (controller *UsersController) Delete(ctx *gin.Context) {
+	log.Info().Msg("delete users")
 	tagId := ctx.Param("tagId")
 	id, err := strconv.Atoi(tagId)
 	helper.ErrorPanic(err)
-	controller.tagsService.Delete(id)
+	controller.usersService.Delete(id)
 
 	webResponse := response.Response{
 		Code:   http.StatusOK,
@@ -78,13 +78,13 @@ func (controller *TagsController) Delete(ctx *gin.Context) {
 }
 
 
-func (controller *TagsController) FindById(ctx *gin.Context) {
-	log.Info().Msg("findbyid tags")
-	tagId := ctx.Param("tagId")
-	id, err := strconv.Atoi(tagId)
+func (controller *UsersController) FindById(ctx *gin.Context) {
+	log.Info().Msg("findbyid users")
+	userId := ctx.Param("userId")
+	id, err := strconv.Atoi(userId)
 	helper.ErrorPanic(err)
 
-	tagResponse := controller.tagsService.FindById(id)
+	tagResponse := controller.usersService.FindById(id)
 
 	webResponse := response.Response{
 		Code:   http.StatusOK,
@@ -95,9 +95,9 @@ func (controller *TagsController) FindById(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, webResponse)
 }
 
-func (controller *TagsController) FindAll(ctx *gin.Context) {
-	log.Info().Msg("findAll tags")
-	tagResponse := controller.tagsService.FindAll()
+func (controller *UsersController) FindAll(ctx *gin.Context) {
+	log.Info().Msg("findAll users")
+	tagResponse := controller.usersService.FindAll()
 	webResponse := response.Response{
 		Code:   http.StatusOK,
 		Status: "Ok",

@@ -9,7 +9,7 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
-func NewRouter(tagsController *controller.TagsController) *gin.Engine {
+func NewRouter(tagsController *controller.UsersController) *gin.Engine {
 	router := gin.Default()
 	// menambahkan swagger
 	router.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))

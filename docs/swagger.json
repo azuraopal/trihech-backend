@@ -9,11 +9,11 @@
     "host": "localhost:8888",
     "basePath": "/api",
     "paths": {
-        "/tags": {
+        "/users": {
             "get": {
                 "description": "Return list of tags.",
-                "tags": [
-                    "tags"
+                "users": [
+                    "users"
                 ],
                 "summary": "Get All tags.",
                 "responses": {

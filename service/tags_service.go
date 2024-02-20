@@ -5,10 +5,10 @@ import (
 	"golang-crud-gin/data/response"
 )
 
-type TagsService interface {
-	Create(tags request.CreateTagsRequest)
-	Update(tags request.UpdateTagsRequest)
+type UsersService interface {
+	Create(tags request.CreateUsersRequest)
+	Update(tags request.UpdateUsersRequest)
 	Delete(tagsId int)
-	FindById(tagsId int) response.TagsResponse
-	FindAll() []response.TagsResponse
+	FindById(tagsId int) response.UsersResponse
+	FindAll() []response.UsersResponse
 }
