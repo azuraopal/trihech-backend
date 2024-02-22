@@ -32,18 +32,18 @@ func (t *UsersRepositoryImpl) FindAll() []model.Users {
 	return userFindAll
 }
 
-// menemukan melalui id implementasi TagsRepository
+// menemukan melalui id implementasi UsersRepository
 func (t *UsersRepositoryImpl) FindById(usersID int) (user model.Users, err error) {
 	var users model.Users
 	result := t.Db.Find(&users, usersID)
 	if result != nil {
 		return users, nil
 	} else {
-		return users, errors.New("tag is not found")
+		return users, errors.New("user is not found")
 	}
 }
 
-// Menyimpan implementasi TagsRepository
+// Menyimpan implementasi UsersRepository
 func (t *UsersRepositoryImpl) Save(user model.Users) {
 	result := t.Db.Create(&user)
 	helper.ErrorPanic(result.Error)
