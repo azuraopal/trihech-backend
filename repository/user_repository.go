@@ -6,6 +6,6 @@ type UsersRepository interface {
 	Save(user model.Users)
 	Update(user model.Users)
 	Delete(userID int)
-	FindById(userID int) (tags model.Users, err error)
+	FindById(userID int) (user model.Users, err error)
 	FindAll() []model.Users
 }

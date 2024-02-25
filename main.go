@@ -32,7 +32,7 @@ func main() {
 	usersService := service.NewTagsServiceImpl(usersRepository, validate)
 
 	// Controller
-	usersController := controller.NewUsersController(*usersService)
+	usersController := controller.NewUsersController(usersService)
 
 	// Router
 	routes := router.NewRouter(usersController)

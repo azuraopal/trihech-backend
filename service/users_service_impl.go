@@ -6,7 +6,6 @@ import (
 	"golang-crud-gin/helper"
 	"golang-crud-gin/model"
 	"golang-crud-gin/repository"
-	"golang-crud-gin/service"
 
 	"github.com/go-playground/validator/v10"
 )
@@ -16,7 +15,7 @@ type UsersServiceImpl struct {
 	Validate       *validator.Validate
 }
 
-func NewTagsServiceImpl(userRepository repository.UsersRepository, validate *validator.Validate) service.UsersService {
+func NewTagsServiceImpl(userRepository repository.UsersRepository, validate *validator.Validate) UsersService {
 	return &UsersServiceImpl{
 		UserRepository: userRepository,
 		Validate:       validate,
@@ -60,7 +59,7 @@ func (t *UsersServiceImpl) FindById(usersId int) response.UsersResponse {
 	helper.ErrorPanic(err)
 
 	tagResponse := response.UsersResponse{
-		ID:       usersData.UserDetails.UserID,
+		ID:       usersData.UsersDetails.UserID,
 		Username: usersData.Username,
 	}
 	return tagResponse

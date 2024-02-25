@@ -38,7 +38,6 @@ func (controller *UsersController) Create(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, webResponse)
 }
 
-
 func (controller *UsersController) Update(ctx *gin.Context) {
 	log.Info().Msg("update users")
 	updateUsersRequest := request.UpdateUsersRequest{}
@@ -76,7 +75,6 @@ func (controller *UsersController) Delete(ctx *gin.Context) {
 	ctx.Header("Content-Type", "application/json")
 	ctx.JSON(http.StatusOK, webResponse)
 }
-
 
 func (controller *UsersController) FindById(ctx *gin.Context) {
 	log.Info().Msg("findbyid users")

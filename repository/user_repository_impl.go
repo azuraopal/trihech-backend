@@ -52,7 +52,7 @@ func (t *UsersRepositoryImpl) Save(user model.Users) {
 // Mengupdate implementasi TagsRepository
 func (t *UsersRepositoryImpl) Update(users model.Users) {
 	var updateUser = request.UpdateUsersRequest{
-		ID:   int(users.ID),
+		ID:       int(users.ID),
 		Username: users.Username,
 	}
 	result := t.Db.Model(&users).Updates(updateUser)
