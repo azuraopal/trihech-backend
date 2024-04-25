@@ -184,7 +184,7 @@ var SwaggerInfo = &swag.Spec{
 	BasePath:         "/api",
 	Schemes:          []string{},
 	Title:            "Tag Service API",
-	Description:      "A Tag service API in Go using Gin framework",
+	Description:      "A Tag service API in Go using Gin and gorm framework",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 }
